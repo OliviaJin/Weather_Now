@@ -4,14 +4,20 @@ document.getElementById('search-button').addEventListener('click', function() {
 });
 
 function fetchWeatherData(locationName) {
-    const url = `https://weathernow-wigc.onrender.com/?locationName=${locationName}`;
+
+    const url = `https://weathernow-wigc.onrender.com/?location=${locationName}`;
 
     fetch(url)
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
         displayWeatherData(data);
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log('Error fetching data: ', error));
 }
 
 function displayWeatherData(data) {
@@ -24,4 +30,4 @@ function displayWeatherData(data) {
     `;
 }
 
-fetchWeatherData('New York');
+fetchWeatherData('New York'); 
