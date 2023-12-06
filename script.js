@@ -3,8 +3,8 @@ document.getElementById('search-button').addEventListener('click', function() {
     fetchWeatherData(locationName);
 });
 
-function fetchWeatherData(city) {
-    const url = `https://weathernow-wigc.onrender.com/?locationName=${city}`;
+function fetchWeatherData(locationName) {
+    const url = `https://weathernow-wigc.onrender.com/?locationName=${locationName}`;
 
     fetch(url)
     .then(response => response.json())
@@ -17,7 +17,7 @@ function fetchWeatherData(city) {
 function displayWeatherData(data) {
     const weatherDetails = document.getElementById('weather-details');
     weatherDetails.innerHTML = `
-        <h3>${data.city}</h3>
+        <h3>${data.locationName}</h3>
         <p>Temperature: ${data.temperature}°C</p>
         <p>Humidity: ${data.humidity}%</p>
         <p>Wind Speed: ${data.windSpeed} m/s</p>
