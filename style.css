@@ -19,7 +19,7 @@ body::before {
 }
 
 header {
-    background: #4883fa;
+    background: #274ACB;
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -50,14 +50,14 @@ footer {
 #search-box {
     padding: 10px;
     width: 250px;
-    border: 2px solid #4883fa;
+    border: 2px solid #274ACB;
     border-radius: 5px;
     font-size: 16px;
 }
 
 #search-button {
     padding: 10px 20px;
-    background-color: #4883fa;
+    background-color: #274ACB;
     color: white;
     border: none;
     border-radius: 5px;
@@ -67,5 +67,5 @@ footer {
 }
 
 #search-button:hover {
-    background-color: #4883fa;
+    background-color: #274ACB;
 }
