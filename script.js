@@ -4,8 +4,7 @@ document.getElementById('search-button').addEventListener('click', function() {
 });
 
 function fetchWeatherData(city) {
-    const apiKey = 'c143a0179deec5064ed72df015c30c1c'; 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+    const url = `https://weathernow-wigc.onrender.com/${encodeURIComponent(NameInput.value)}`;
 
     fetch(url)
     .then(response => response.json())
