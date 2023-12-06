@@ -29,5 +29,5 @@ function displayWeatherData(data) {
         <p>Wind Speed: ${data.windSpeed} m/s</p>
     `;
 }
-
+//11
 fetchWeatherData('New York'); 
