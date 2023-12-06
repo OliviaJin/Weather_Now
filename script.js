@@ -1,33 +1,34 @@
-document.getElementById('search-button').addEventListener('click', function() {
-    const locationName = document.getElementById('search-box').value;
-    fetchWeatherData(locationName);
-});
+  document.addEventListener('DOMContentLoaded', function () {
+    const locationInput = document.getElementById('locationInput');
+    const searchButton = document.getElementById('search');
+    const weatherInfoContainer = document.getElementById('weatherInfoContainer');
 
-function fetchWeatherData(locationName) {
+    locationInput.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        searchWeather();
+      }
+    });
 
-    const url = `https://weathernow-wigc.onrender.com/weather?locationName=${locationName}`;
+    searchButton.addEventListener('click', searchWeather);
 
-    fetch(url)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        displayWeatherData(data);
-    })
-    .catch(error => console.log('Error fetching data: ', error));
-}
+    function searchWeather() {
+      const url = `https://weathernow-wigc.onrender.com/weather?locationName=${encodeURIComponent(locationInput.value)}`;
 
-function displayWeatherData(data) {
-    const weatherDetails = document.getElementById('weather-details');
-    weatherDetails.innerHTML = `
-        <h3>${data.locationName}</h3>
-        <p>Temperature: ${data.temperature}°C</p>
-        <p>Humidity: ${data.humidity}%</p>
-        <p>Wind Speed: ${data.windSpeed} m/s</p>
-    `;
-}
-//11
-fetchWeatherData('New York'); 
+      // Fetch data from the weather API
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          weatherInfoContainer.style.display = 'block';
+          weatherInfoContainer.innerHTML = `
+            <h2>${data.location}</h2>
+            <p>Temperature: ${data.temperature}</p>
+            <p>Humidity: ${data.humidity}</p>
+            <p>Wind Speed: ${data.windSpeed}</p>`;
+          // You can add more data points here as per the structure of your weather data
+        })
+        .catch(error => {
+          console.error('Error fetching weather data:', error);
+          weatherInfoContainer.innerHTML = 'Error fetching weather data. Please try again later.';
+        });
+    }
+  });
