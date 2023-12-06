@@ -1,15 +1,33 @@
-async function getWeatherByLocationName(locationName) {
-    try {
-        const response = await fetch(`https://weathernow-wigc.onrender.com/weather?locationName=${locationName}`);
-        const weatherData = await response.json();
+document.getElementById('search-button').addEventListener('click', function() {
+    const locationName = document.getElementById('search-box').value;
+    fetchWeatherData(locationName);
+});
 
-        if (response.ok) {
-            return { success: true, data: weatherData };
-        } else {
-            return { success: false, error: weatherData.error || "Unknown error" };
+function fetchWeatherData(locationName) {
+
+    const url = `https://weathernow-wigc.onrender.com/weather?locationName=${locationName}`;
+
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-    } catch (error) {
-        console.error("Error fetching weather data:", error);
-        return { success: false, error: "Error fetching weather data" };
-    }
+        return response.json();
+    })
+    .then(data => {
+        displayWeatherData(data);
+    })
+    .catch(error => console.log('Error fetching data: ', error));
 }
+
+function displayWeatherData(data) {
+    const weatherDetails = document.getElementById('weather-details');
+    weatherDetails.innerHTML = `
+        <h3>${data.locationName}</h3>
+        <p>Temperature: ${data.temperature}°C</p>
+        <p>Humidity: ${data.humidity}%</p>
+        <p>Wind Speed: ${data.windSpeed} m/s</p>
+    `;
+}
+//11
+fetchWeatherData('New York'); 
