@@ -1,14 +1,25 @@
 body {
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f0f0f0;
-    }
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
 }
 
 header {
-    background: #fab648;
+    background: #4883fa;
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -16,10 +27,10 @@ header {
 
 main {
     padding: 20px;
+    color: white;
 }
 
 #weather-details, #forecast-details {
-    background: white;
     padding: 20px;
     margin-top: 20px;
 }
@@ -39,14 +50,14 @@ footer {
 #search-box {
     padding: 10px;
     width: 250px;
-    border: 2px solid #fab648;
+    border: 2px solid #4883fa;
     border-radius: 5px;
     font-size: 16px;
 }
 
 #search-button {
     padding: 10px 20px;
-    background-color: #fab648;
+    background-color: #4883fa;
     color: white;
     border: none;
     border-radius: 5px;
@@ -56,5 +67,5 @@ footer {
 }
 
 #search-button:hover {
-    background-color: #fab648;
+    background-color: #4883fa;
 }
